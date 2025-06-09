@@ -1,19 +1,14 @@
 function solution(price) {
+    const discounts = [
+        {threshold: 500000, rate: 0.8 },
+        {threshold: 300000, rate: 0.9 },
+        {threshold: 100000, rate: 0.95},
+    ];
     
-    let saledPrice;
-    
-    if(price >= 500000) {
-        saledPrice = price*0.8;
-    }else if(price >= 300000) {
-        saledPrice = price*0.9;
-    }else if(price >= 100000) {
-        saledPrice = price*0.95;
-    }else{
-        // 10만원 미만은 할인x
-        saledPrice = price
+    for(let discount of discounts) {
+        if (price >= discount.threshold) {
+            return Math.trunc(price * discount.rate);
+        }
     }
-    
-    return Math.trunc(saledPrice)
-    
-    
+    return price;
 }
